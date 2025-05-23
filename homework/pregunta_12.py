@@ -15,3 +15,22 @@ def pregunta_12():
     {'A': 177, 'B': 187, 'C': 114, 'D': 136, 'E': 324}
 
     """
+
+    diccio = {}
+
+    with open('files/input/data.csv', 'r') as file:
+        for line in file:
+            columns = line.strip().split('\t')
+            letra = columns[0]
+            diccionario = (columns[4])
+            separado = diccionario.split(',')
+            suma= 0
+            for elemento in separado:
+                pareja = elemento.split(':')
+                suma += int(pareja[1])
+            if letra in diccio:
+                diccio[letra] += suma
+            else:
+                diccio[letra] = suma
+
+    return (dict(sorted(diccio.items())))

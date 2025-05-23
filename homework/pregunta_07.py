@@ -14,14 +14,30 @@ def pregunta_07():
 
     Rta/
     [(0, ['C']),
-     (1, ['E', 'B', 'E']),
-     (2, ['A', 'E']),
-     (3, ['A', 'B', 'D', 'E', 'E', 'D']),
-     (4, ['E', 'B']),
-     (5, ['B', 'C', 'D', 'D', 'E', 'E', 'E']),
-     (6, ['C', 'E', 'A', 'B']),
-     (7, ['A', 'C', 'E', 'D']),
-     (8, ['E', 'D', 'E', 'A', 'B']),
-     (9, ['A', 'B', 'E', 'A', 'A', 'C'])]
+    (1, ['E', 'B', 'E']),
+    (2, ['A', 'E']),
+    (3, ['A', 'B', 'D', 'E', 'E', 'D']),
+    (4, ['E', 'B']),
+    (5, ['B', 'C', 'D', 'D', 'E', 'E', 'E']),
+    (6, ['C', 'E', 'A', 'B']),
+    (7, ['A', 'C', 'E', 'D']),
+    (8, ['E', 'D', 'E', 'A', 'B']),
+    (9, ['A', 'B', 'E', 'A', 'A', 'C'])]
 
     """
+
+    dict = {}
+
+    with open('files/input/data.csv', 'r') as file:
+        for line in file:
+            columns = line.strip().split('\t')
+            letra = columns[0]
+            valor = int(columns[1])
+            if valor in dict:
+                dict[valor].append(letra)
+            else:
+                dict[valor] = [letra]
+
+    # Ordenar el diccionario por la clave (letra)
+    ordenado = sorted(dict.items())
+    return ordenado

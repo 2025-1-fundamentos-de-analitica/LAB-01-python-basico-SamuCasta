@@ -16,14 +16,37 @@ def pregunta_08():
 
     Rta/
     [(0, ['C']),
-     (1, ['B', 'E']),
-     (2, ['A', 'E']),
-     (3, ['A', 'B', 'D', 'E']),
-     (4, ['B', 'E']),
-     (5, ['B', 'C', 'D', 'E']),
-     (6, ['A', 'B', 'C', 'E']),
-     (7, ['A', 'C', 'D', 'E']),
-     (8, ['A', 'B', 'D', 'E']),
-     (9, ['A', 'B', 'C', 'E'])]
+    (1, ['B', 'E']),
+    (2, ['A', 'E']),
+    (3, ['A', 'B', 'D', 'E']),
+    (4, ['B', 'E']),
+    (5, ['B', 'C', 'D', 'E']),
+    (6, ['A', 'B', 'C', 'E']),
+    (7, ['A', 'C', 'D', 'E']),
+    (8, ['A', 'B', 'D', 'E']),
+    (9, ['A', 'B', 'C', 'E'])]
 
     """
+
+    dict = {}
+
+    with open('files/input/data.csv', 'r') as file:
+        for line in file:
+            columns = line.strip().split('\t')
+            letra = columns[0]
+            valor = int(columns[1])
+            if valor in dict:
+                if letra not in dict[valor]:
+                    dict[valor].append(letra)
+            else:
+                dict[valor] = [letra]
+
+    # Ordenar el diccionario por la clave (letra)
+    ordenado = sorted(dict.items())
+    resultado = []
+    for item in ordenado:
+        letra = item[0]
+        lista_letras = sorted(item[1])
+        resultado.append((letra, lista_letras))
+
+    return (resultado)

@@ -13,10 +13,21 @@ def pregunta_10():
 
     Rta/
     [('E', 3, 5),
-     ('A', 3, 4),
-     ...
-     ('E', 2, 3),
-     ('E', 3, 3)]
+    ('A', 3, 4),
+    ...
+    ('E', 2, 3),
+    ('E', 3, 3)]
 
 
     """
+    resultado = []
+
+    with open('files/input/data.csv', 'r') as file:
+        for line in file:
+            columns = line.strip().split('\t')
+            letra = columns[0]
+            valor1 = len(columns[3].split(','))
+            valor2 = len(columns[4].split(','))
+            resultado.append((letra, valor1, valor2))
+
+    return (resultado)

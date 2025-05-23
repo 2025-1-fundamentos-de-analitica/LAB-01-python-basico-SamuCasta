@@ -16,3 +16,18 @@ def pregunta_11():
 
 
     """
+
+    diccio = {}
+
+    with open('files/input/data.csv', 'r') as file:
+        for line in file:
+            columns = line.strip().split('\t')
+            letras = columns[3].split(',')
+            valor = int(columns[1])
+            for letra in letras:
+                if letra in diccio:
+                    diccio[letra] += valor
+                else:
+                    diccio[letra] = valor
+
+    return (dict(sorted(diccio.items())))

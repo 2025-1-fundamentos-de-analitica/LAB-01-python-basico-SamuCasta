@@ -15,3 +15,28 @@ def pregunta_05():
     [('A', 9, 2), ('B', 9, 1), ('C', 9, 0), ('D', 8, 3), ('E', 9, 1)]
 
     """
+
+    dict = {}
+
+    with open('files/input/data.csv', 'r') as file:
+        for line in file:
+            columns = line.strip().split('\t')
+            letra = columns[0]
+            valor = int(columns[1])
+            if letra in dict:
+                if valor > dict[letra][0] :
+                    dict[letra][0] = valor
+                if valor < dict[letra][1] :
+                    dict[letra][1] = valor
+            else:
+                dict[letra] = [valor,valor]
+    # Ordenar el diccionario por la clave (letra)
+    ordenado = sorted(dict.items())
+    resultado = []
+    for item in ordenado:
+        letra = item[0]
+        maximo = item[1][0]
+        minimo = item[1][1]
+        resultado.append((letra, maximo, minimo))
+
+    return (resultado)

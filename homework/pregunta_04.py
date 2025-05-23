@@ -13,16 +13,30 @@ def pregunta_04():
 
     Rta/
     [('01', 3),
-     ('02', 4),
-     ('03', 2),
-     ('04', 4),
-     ('05', 3),
-     ('06', 3),
-     ('07', 5),
-     ('08', 6),
-     ('09', 3),
-     ('10', 2),
-     ('11', 2),
-     ('12', 3)]
+    ('02', 4),
+    ('03', 2),
+    ('04', 4),
+    ('05', 3),
+    ('06', 3),
+    ('07', 5),
+    ('08', 6),
+    ('09', 3),
+    ('10', 2),
+    ('11', 2),
+    ('12', 3)]
 
     """
+
+    dict = {}
+
+    with open('files/input/data.csv', 'r') as file:
+        for line in file:
+            columns = line.strip().split('\t')
+            fecha = columns[2].split('-')
+            if fecha[1] in dict:
+                dict[fecha[1]] += 1
+            else:
+                dict[fecha[1]] = 1
+    # Ordenar el diccionario por la clave (letra)
+    ordenado = sorted(dict.items())
+    return ordenado
